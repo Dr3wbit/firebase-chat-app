@@ -6,9 +6,9 @@ const Nav = props => {
         padding: '0 10px'
     };
     return (
-        <nav className="grey darken-2" style={navStyle}>
+        <nav className="pink darken-2" style={navStyle}>
             <div className="nav-wrapper">
-            <Link to="/" className ="brand-logo">Chatty App</Link>
+            <Link to="/" className ="brand-logo">Whaddap App </Link>
 
             <ul className="right">
                 <li>
@@ -17,7 +17,6 @@ const Nav = props => {
                 <li>
                     <Link to="/chat">Chat</Link>
                 </li>
-            
             </ul>
             </div>
         </nav>
