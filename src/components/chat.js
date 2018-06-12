@@ -6,23 +6,24 @@ import MessageInput from './message_input';
 
 class Chat extends Component {
     componentDidMount(){
-        db.ref('/chat-log').on('value',(snapshot) => {
+        const { id } = this.props.match.params;
+        db.ref(`/chat-rooms/${id}`).on('value',(snapshot) => {
             this.props.updateChat(snapshot.val());
         })
     }
     render (){
-        const { chatLog } = this.props
+        const { chatLog, roomName, match: { params }} = this.props
         const chatElements = Object.keys(chatLog).map((key, index) => {
             const { name, message } = chatLog[key];
             return <li className="collection-item" key={key}><b className="pink-text">{ name}: </b> {message} </li>
         })
         return(
             <div>
-                <h1 className="center">Chat Room</h1>
+                <h1 className="center">{roomName || 'Chat Room'}</h1>
                 <ul className="collection">
                     {chatElements}
                 </ul>
-                <MessageInput/>
+                <MessageInput roomId={params.id}/>
             </div>
         )
     }
@@ -30,7 +31,8 @@ class Chat extends Component {
 
 function mstp(state){
     return {
-        chatLog: state.chat.log
+        chatLog: state.chat.log,
+        roomName: state.chat.name
     }
 }
 
