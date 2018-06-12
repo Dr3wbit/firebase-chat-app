@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import Nav from './nav';
 import Home from './home';
 import Chat from './chat';
+import CreateChatRoom from './create_chat_room';
 
 
 const App = () => (
@@ -11,7 +12,8 @@ const App = () => (
         <Nav/>
         <div className="container">
             <Route exact path="/" component={Home}></Route>
-            <Route path="/chat" component={Chat}></Route>
+            <Route path="/chat/:id" component={Chat}></Route>
+            <Route path="/create-room" component={CreateChatRoom}></Route>
         
         </div>
     </div>
